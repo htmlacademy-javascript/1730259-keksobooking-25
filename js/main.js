@@ -1,5 +1,5 @@
-const getRandomNumber = (numberFrom, numberNext, numberFloat) => {
-  if (numberFrom >= 0 && numberNext >= 0 && numberFrom < numberNext && numberFloat >= 0 || numberFloat === undefined) {
+const getRandomNumber = (numberFrom, numberNext, numberFloat = 0) => {
+  if (numberFrom >= 0 && numberNext >= 0 && numberFrom < numberNext && numberFloat >= 0) {
     const rand = (Math.random() * (numberNext - numberFrom) + numberFrom).toFixed(numberFloat);
     return Number(rand);
   }
