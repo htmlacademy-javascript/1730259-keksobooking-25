@@ -1,7 +1,9 @@
 const getRandomNumberSimple = (numberFrom, numberNext) => {
   if (numberFrom >= 0 && numberNext >= 0 && numberFrom < numberNext) {
-    const randomSimple = Math.random() * (numberNext - numberFrom) + numberFrom;
-    return Number(Math.trunc(randomSimple));
+    const numberMin = Math.ceil(numberFrom);
+    const numberMax = Math.floor(numberNext);
+    const randomSimple = Math.floor(Math.random() * (numberMax - numberMin + 1)) + numberMin;
+    return Number(randomSimple);
   }
   return new TypeError('Некоректно указанны данные');
 };
