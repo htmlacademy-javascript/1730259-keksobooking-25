@@ -1,4 +1,4 @@
-const SIMILAR_AD_COUNT = 10;
+// const SIMILAR_AD_COUNT = 10;
 
 const AVATAR = [
   'img/avatars/user01.png',
