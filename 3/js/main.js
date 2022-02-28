@@ -1,4 +1,4 @@
-// const SIMILAR_AD_COUNT = 10;
+const SIMILAR_AD_COUNT = 10;
 
 const AVATAR = [
   'img/avatars/user01.png',
@@ -77,7 +77,9 @@ const getRandomNumberFloat = (numberFrom, numberNext, numberFloat = 0) => {
 
 const getRandomElements = (element) => element[getRandomNumberSimple(0, element.length - 1)];
 
-const newAdd = () => {
+const AVATARS = Array.from({length: SIMILAR_AD_COUNT}, newAddItem);
+
+const newAddItem = () => {
   const lat = getRandomNumberFloat(35.65000, 35.70000, 5);
   const lng = getRandomNumberFloat(139.70000, 139.80000, 5);
 
@@ -100,23 +102,17 @@ const newAdd = () => {
       features: getRandomElements(FEATURES),
       description: getRandomElements(DESCRIPTION),
       photos: getRandomElements(PHOTOS),
-      location: {
-        lat,
-        lng,
-      },
+    },
+    location: {
+      lat,
+      lng,
     },
   };
 };
 
-newAdd();
+const similarItems = Array.from({length: SIMILAR_AD_COUNT}, newAddItem);
 
 /*
-В файле main.js на основе написанных в прошлом задании вспомогательных функций напишите необходимые функции для создания массива из 10 сгенерированных JS-объектов. Каждый объект массива — описание похожего объявления неподалёку.
-
-Структура каждого объекта должна быть следующей:
-
-  author, объект — описывает автора. Содержит одно поле:
-
   avatar, строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
   offer, объект — содержит информацию об объявлении. Состоит из полей:
 
