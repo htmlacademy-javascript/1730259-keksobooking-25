@@ -1,6 +1,6 @@
 const SIMILAR_AD_COUNT = 10;
 
-const TITLE = [
+const TITLES = [
   'Горячие новинки',
   'Бесплатная бронь',
   'Маленькая предоплата',
@@ -8,7 +8,7 @@ const TITLE = [
   'Возможность продления брони',
 ];
 
-const TYPE = [
+const TYPES = [
   'palace',
   'flat',
   'house',
@@ -16,7 +16,7 @@ const TYPE = [
   'hotel',
 ];
 
-const CHECK_TIME = [
+const TIMES = [
   '12:00',
   '13:00',
   '14:00',
@@ -31,7 +31,34 @@ const FEATURES = [
   'conditioner',
 ];
 
-const DESCRIPTION = [
+const LOCATIONLAT = {
+  min: 35.65000,
+  max: 35.70000,
+  float: 5,
+};
+
+const LOCATIONLNG = {
+  min: 139.70000,
+  max: 139.80000,
+  float: 5,
+};
+
+const PRICES = [
+  100,
+  100000,
+];
+
+const ROOMS = [
+  1,
+  10,
+];
+
+const QUESTS = [
+  1,
+  20,
+];
+
+const DESCRIPTIONS = [
   'Кондиционер',
   'Сейф для личных вещей',
   'Бесплатная парковка',
@@ -76,37 +103,34 @@ const getAvatar = () => {
   return avatarRandom;
 };
 
-const getRandomElements = (element) => element[getRandomNumberSimple(0, element.length - 1)];
+const getRandomElement = (element) => element[getRandomNumberSimple(0, element.length - 1)];
 
-const getLocationLat = () => getRandomNumberFloat(35.65000, 35.70000, 5);
-const getLocationLng = () => getRandomNumberFloat(139.70000, 139.80000, 5);
+const getLocationLat = () => getRandomNumberFloat(LOCATIONLAT.min, LOCATIONLAT.max, LOCATIONLAT.float);
+const getLocationLng = () => getRandomNumberFloat(LOCATIONLNG.min, LOCATIONLNG.max, LOCATIONLNG.float);
 
-const getPrice = () => getRandomNumberSimple(100,100000);
-
-const getRooms = () => getRandomNumberSimple(1, 10);
-
-const getQuests = () => getRandomNumberSimple(1, 20);
+// features
+const getRandomArray = (element) => element.slice(0, getRandomNumberSimple(1, element.length - 1));
 
 const newAddItem = () => {
   const lat = getLocationLat();
   const lng = getLocationLng();
 
   return {
-    autor: {
+    author: {
       avatar: `img/avatars/user${getAvatar()}.png`,
     },
     offer: {
-      title: getRandomElements(TITLE),
-      adress: `${lat}, ${lng}`,
-      price: getPrice(),
-      type: getRandomElements(TYPE),
-      rooms: getRooms(),
-      guests: getQuests(),
-      checkin: getRandomElements(CHECK_TIME),
-      checkout: getRandomElements(CHECK_TIME),
-      features: getRandomElements(FEATURES),
-      description: getRandomElements(DESCRIPTION),
-      photos: getRandomElements(PHOTOS),
+      title: getRandomElement(TITLES),
+      address: `${lat}, ${lng}`,
+      price: getRandomElement(PRICES),
+      type: getRandomElement(TYPES),
+      rooms: getRandomElement(ROOMS),
+      guests: getRandomElement(QUESTS),
+      checkin: getRandomElement(TIMES),
+      checkout: getRandomElement(TIMES),
+      features: getRandomArray(FEATURES),
+      description: getRandomElement(DESCRIPTIONS),
+      photos: getRandomElement(PHOTOS),
     },
     location: {
       lat,
