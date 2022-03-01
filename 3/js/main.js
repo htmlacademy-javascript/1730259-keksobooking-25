@@ -1,18 +1,5 @@
 const SIMILAR_AD_COUNT = 10;
 
-const AVATAR = [
-  'img/avatars/user01.png',
-  'img/avatars/user02.png',
-  'img/avatars/user03.png',
-  'img/avatars/user04.png',
-  'img/avatars/user05.png',
-  'img/avatars/user06.png',
-  'img/avatars/user07.png',
-  'img/avatars/user08.png',
-  'img/avatars/user09.png',
-  'img/avatars/user10.png',
-];
-
 const TITLE = [
   'Горячие новинки',
   'Бесплатная бронь',
@@ -75,28 +62,46 @@ const getRandomNumberFloat = (numberFrom, numberNext, numberFloat = 0) => {
   throw new TypeError('Некоректно указанны данные');
 };
 
+const avatarNumbers = Array.from({ length: SIMILAR_AD_COUNT }, (v, i) => i + 1);
+
+const avatarRandomNumbers = avatarNumbers.sort(() => Math.random() - 0.5);
+
+const getAvatar = () => {
+  let avatarRandom = avatarRandomNumbers.pop();
+
+  if (avatarRandom < 10) {
+    avatarRandom = `0${String(avatarRandom)}`;
+    return avatarRandom;
+  }
+  return avatarRandom;
+};
+
 const getRandomElements = (element) => element[getRandomNumberSimple(0, element.length - 1)];
 
-const AVATARS = Array.from({length: SIMILAR_AD_COUNT}, newAddItem);
+const getLocationLat = () => getRandomNumberFloat(35.65000, 35.70000, 5);
+const getLocationLng = () => getRandomNumberFloat(139.70000, 139.80000, 5);
+
+const getPrice = () => getRandomNumberSimple(100,100000);
+
+const getRooms = () => getRandomNumberSimple(1, 10);
+
+const getQuests = () => getRandomNumberSimple(1, 20);
 
 const newAddItem = () => {
-  const lat = getRandomNumberFloat(35.65000, 35.70000, 5);
-  const lng = getRandomNumberFloat(139.70000, 139.80000, 5);
+  const lat = getLocationLat();
+  const lng = getLocationLng();
 
   return {
     autor: {
-      avatar: getRandomElements(AVATAR),
+      avatar: `img/avatars/user${getAvatar()}.png`,
     },
     offer: {
       title: getRandomElements(TITLE),
-      adress: {
-        lat,
-        lng,
-      },
-      price: getRandomNumberSimple(100,100000),
+      adress: `${lat}, ${lng}`,
+      price: getPrice(),
       type: getRandomElements(TYPE),
-      rooms: getRandomNumberSimple(1, 10),
-      guests: getRandomNumberSimple(1, 20),
+      rooms: getRooms(),
+      guests: getQuests(),
       checkin: getRandomElements(CHECK_TIME),
       checkout: getRandomElements(CHECK_TIME),
       features: getRandomElements(FEATURES),
@@ -110,37 +115,6 @@ const newAddItem = () => {
   };
 };
 
-const similarItems = Array.from({length: SIMILAR_AD_COUNT}, newAddItem);
+const similarItems = () => Array.from({length: SIMILAR_AD_COUNT}, newAddItem);
 
-/*
-  avatar, строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
-  offer, объект — содержит информацию об объявлении. Состоит из полей:
-
- title, строка — заголовок предложения. Придумайте самостоятельно.
-
- address, строка — адрес предложения. Для простоты пусть пока составляется из географических координат по маске {{location.lat}}, {{location.lng}}.
-
- price, число — стоимость. Случайное целое положительное число.
-
- type, строка — одно из пяти фиксированных значений: palace, flat, house, bungalow или hotel.
-
- rooms, число — количество комнат. Случайное целое положительное число.
-
- guests, число — количество гостей, которое можно разместить. Случайное целое положительное число.
-
- checkin, строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00.
-
- checkout, строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00.
-
- features, массив строк — массив случайной длины из значений: wifi, dishwasher, parking, washer, elevator, conditioner. Значения не должны повторяться.
-
- description, строка — описание помещения. Придумайте самостоятельно.
-
- photos, массив строк — массив случайной длины из значений: https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg, https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg, https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg.
-
- location, объект — местоположение в виде географических координат. Состоит из двух полей:
-
- lat, число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000.
-
- lng, число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000.
-*/
+similarItems();
