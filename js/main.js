@@ -89,11 +89,9 @@ const getRandomNumberFloat = (numberFrom, numberNext, numberFloat = 0) => {
   throw new TypeError('Некоректно указанны данные');
 };
 
-const avatarNumbers = Array.from({ length: SIMILAR_AD_COUNT }, (v, i) => i + 1);
-
-const avatarRandomNumbers = avatarNumbers.sort(() => Math.random() - 0.5);
-
 const getAvatar = () => {
+  const avatarNumbers = Array.from({ length: SIMILAR_AD_COUNT }, (v, i) => i + 1);
+  const avatarRandomNumbers = avatarNumbers.sort(() => Math.random() - 0.5);
   let avatarRandom = avatarRandomNumbers.pop();
 
   if (avatarRandom < 10) {
@@ -108,7 +106,6 @@ const getRandomElement = (element) => element[getRandomNumberSimple(0, element.l
 const getLocationLat = () => getRandomNumberFloat(LOCATIONLAT.min, LOCATIONLAT.max, LOCATIONLAT.float);
 const getLocationLng = () => getRandomNumberFloat(LOCATIONLNG.min, LOCATIONLNG.max, LOCATIONLNG.float);
 
-// features
 const getRandomArray = (element) => {
   const randomArray = element.sort(() => Math.random() - 0.5);
   const createrandomArray = randomArray.slice(0, getRandomNumberSimple(1, element.length));
