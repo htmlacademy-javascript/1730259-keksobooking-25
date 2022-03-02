@@ -109,7 +109,11 @@ const getLocationLat = () => getRandomNumberFloat(LOCATIONLAT.min, LOCATIONLAT.m
 const getLocationLng = () => getRandomNumberFloat(LOCATIONLNG.min, LOCATIONLNG.max, LOCATIONLNG.float);
 
 // features
-const getRandomArray = (element) => element.slice(0, getRandomNumberSimple(1, element.length - 1));
+const getRandomArray = (element) => {
+  const randomArray = element.sort(() => Math.random() - 0.5);
+  const createrandomArray = randomArray.slice(0, getRandomNumberSimple(1, element.length));
+  return createrandomArray;
+};
 
 const newAddItem = () => {
   const lat = getLocationLat();
@@ -130,7 +134,7 @@ const newAddItem = () => {
       checkout: getRandomElement(TIMES),
       features: getRandomArray(FEATURES),
       description: getRandomElement(DESCRIPTIONS),
-      photos: getRandomElement(PHOTOS),
+      photos: getRandomArray(PHOTOS),
     },
     location: {
       lat,
