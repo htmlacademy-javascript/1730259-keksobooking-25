@@ -143,3 +143,5 @@ const generateNewItem = () => {
 
 const similarItems = Array.from({length: SIMILAR_AD_COUNT}, generateNewItem);
 
+// eslint-disable-next-line no-console
+console.log(similarItems);
