@@ -89,9 +89,11 @@ const getRandomNumberFloat = (numberFrom, numberNext, numberFloat = 0) => {
   throw new TypeError('Некоректно указанны данные');
 };
 
+const avatarNumbers = Array.from({ length: SIMILAR_AD_COUNT }, (v, i) => i + 1);
+
+const avatarRandomNumbers = avatarNumbers.sort(() => Math.random() - 0.5);
+
 const getAvatar = () => {
-  const avatarNumbers = Array.from({ length: SIMILAR_AD_COUNT }, (v, i) => i + 1);
-  const avatarRandomNumbers = avatarNumbers.sort(() => Math.random() - 0.5);
   let avatarRandom = avatarRandomNumbers.pop();
 
   if (avatarRandom < 10) {
