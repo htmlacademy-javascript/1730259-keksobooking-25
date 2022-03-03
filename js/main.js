@@ -31,13 +31,13 @@ const FEATURES = [
   'conditioner',
 ];
 
-const LOCATIONLAT = {
+const LOCATION_LAT = {
   min: 35.65000,
   max: 35.70000,
   float: 5,
 };
 
-const LOCATIONLNG = {
+const LOCATION_LNG = {
   min: 139.70000,
   max: 139.80000,
   float: 5,
@@ -105,16 +105,15 @@ const getAvatar = () => {
 
 const getRandomElement = (element) => element[getRandomNumberSimple(0, element.length - 1)];
 
-const getLocationLat = () => getRandomNumberFloat(LOCATIONLAT.min, LOCATIONLAT.max, LOCATIONLAT.float);
-const getLocationLng = () => getRandomNumberFloat(LOCATIONLNG.min, LOCATIONLNG.max, LOCATIONLNG.float);
+const getLocationLat = () => getRandomNumberFloat(LOCATION_LAT.min, LOCATION_LAT.max, LOCATION_LAT.float);
+const getLocationLng = () => getRandomNumberFloat(LOCATION_LNG.min, LOCATION_LNG.max, LOCATION_LNG.float);
 
-const getRandomArray = (element) => {
-  const randomArray = element.sort(() => Math.random() - 0.5);
-  const createrandomArray = randomArray.slice(0, getRandomNumberSimple(1, element.length));
-  return createrandomArray;
+const generateNewArrays = (aray) => {
+  const mixArray = aray.sort(() => Math.random() - 0.5);
+  return mixArray.slice(0, getRandomNumberSimple(1, aray.length));
 };
 
-const newAddItem = () => {
+const generateNewItem = () => {
   const lat = getLocationLat();
   const lng = getLocationLng();
 
@@ -131,9 +130,9 @@ const newAddItem = () => {
       guests: getRandomElement(QUESTS),
       checkin: getRandomElement(TIMES),
       checkout: getRandomElement(TIMES),
-      features: getRandomArray(FEATURES),
+      features: generateNewArrays(FEATURES),
       description: getRandomElement(DESCRIPTIONS),
-      photos: getRandomArray(PHOTOS),
+      photos: generateNewArrays(PHOTOS),
     },
     location: {
       lat,
@@ -142,6 +141,5 @@ const newAddItem = () => {
   };
 };
 
-const similarItems = () => Array.from({length: SIMILAR_AD_COUNT}, newAddItem);
+const similarItems = Array.from({length: SIMILAR_AD_COUNT}, generateNewItem);
 
-similarItems();
