@@ -78,11 +78,10 @@ const avatarNumbers = Array.from({ length: SIMILAR_AD_COUNT }, (v, i) => i + 1);
 const avatarRandomNumbers = avatarNumbers.sort(() => Math.random() - 0.5);
 
 const getAvatar = () => {
-  let avatarRandom = avatarRandomNumbers.pop();
+  const avatarRandom = avatarRandomNumbers.pop();
 
   if (avatarRandom < 10) {
-    avatarRandom = `0${String(avatarRandom)}`;
-    return avatarRandom;
+    return `0${avatarRandom}`;
   }
   return avatarRandom;
 };
@@ -90,9 +89,9 @@ const getAvatar = () => {
 const getLocationLat = () => getRandomNumberFloat(LOCATION_LAT.min, LOCATION_LAT.max, LOCATION_LAT.float);
 const getLocationLng = () => getRandomNumberFloat(LOCATION_LNG.min, LOCATION_LNG.max, LOCATION_LNG.float);
 
-const shuffle = (array) => {
-  const mixedData = array.sort(() => Math.random() - 0.5);
-  return mixedData.slice(0, getRandomNumberSimple(1, array.length));
+const shuffle = (items ) => {
+  const mixedData = items.sort(() => Math.random() - 0.5);
+  return mixedData.slice(0, getRandomNumberSimple(1, items.length));
 };
 
 const generateNewItem = () => {
@@ -123,6 +122,6 @@ const generateNewItem = () => {
   };
 };
 
-const generateNewusers = () => Array.from({length: SIMILAR_AD_COUNT}, generateNewItem);
+const generateNewUsers = () => Array.from({length: SIMILAR_AD_COUNT}, generateNewItem);
 
-export {generateNewusers};
+export {generateNewUsers};
