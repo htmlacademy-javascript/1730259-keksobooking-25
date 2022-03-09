@@ -1,7 +1,7 @@
 const adForm = document.querySelector('.ad-form');
 const adFormFieldsets = adForm.querySelectorAll('fieldset');
 const mapFilter = document.querySelector('.map__filters');
-const mapFilterFieldset = mapFilter.querySelectorAll('fieldset');
+const mapFilterFieldset = mapFilter.querySelector('fieldset');
 const mapFilterSelects = mapFilter.querySelectorAll('select');
 
 const pageDisabled = () => {
