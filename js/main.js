@@ -1,4 +1,8 @@
-import {generateNewUsers} from './data.js';
+import {generateNewUsers, SIMILAR_AD_COUNT} from './data.js';
+import {renderCard} from './card.js';
 
-// eslint-disable-next-line no-console
-console.log(generateNewUsers());
+const generationData = generateNewUsers(SIMILAR_AD_COUNT);
+
+renderCard(generationData[0]);
+
+export {generationData};
