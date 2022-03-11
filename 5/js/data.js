@@ -122,6 +122,6 @@ const generateNewItem = () => {
   };
 };
 
-const generateNewUsers = () => Array.from({length: SIMILAR_AD_COUNT}, generateNewItem);
+const generateNewUsers = (element) => Array.from({length: element}, generateNewItem);
 
-export {generateNewUsers};
+export {generateNewUsers,generateNewItem, SIMILAR_AD_COUNT};

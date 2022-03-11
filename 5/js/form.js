@@ -1,10 +1,12 @@
+//для задания module7-task2
+
 const adForm = document.querySelector('.ad-form');
 const adFormFieldsets = adForm.querySelectorAll('fieldset');
 const mapFilter = document.querySelector('.map__filters');
 const mapFilterFieldset = mapFilter.querySelector('fieldset');
 const mapFilterSelects = mapFilter.querySelectorAll('select');
 
-const pageDisabled = () => {
+const deactivatePage = () => {
   adForm.classList.add('ad-form--disabled');
   mapFilter.classList.add('map__filters--disabled');
   adFormFieldsets.forEach((item) => {item.disabled = true;});
@@ -12,7 +14,7 @@ const pageDisabled = () => {
   mapFilterSelects.forEach((item) => {item.disabled = true;});
 };
 
-const pageActive = () => {
+const activatePage = () => {
   adForm.classList.remove('ad-form--disabled');
   mapFilter.classList.remove('map__filters--disabled');
   adFormFieldsets.forEach((item) => {item.disabled = false;});
@@ -20,4 +22,4 @@ const pageActive = () => {
   mapFilterSelects.forEach((item) => {item.disabled = false;});
 };
 
-export {pageDisabled, pageActive};
+export {deactivatePage, activatePage};
