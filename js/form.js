@@ -1,5 +1,3 @@
-//для задания module7-task2
-
 const adForm = document.querySelector('.ad-form');
 const adFormFieldsets = adForm.querySelectorAll('fieldset');
 const mapFilter = document.querySelector('.map__filters');
