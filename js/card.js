@@ -22,34 +22,14 @@ const renderFeatures = (templateElement, elements) => {
   });
 };
 
-/*Тебе надо очистить photoContainer и с помощью map создать из массива photoItems массив строк типа "<img src='адрес из текущего элемента массива' width height alt>", потом эти строки объединить в одну строку методом join и использовать insertAjacentHTML или innerHTML */
-
 const renderPhotos = (templateElement, elements) => {
   const photoContainer = templateElement.querySelector('.popup__photos');
-  let photoItem = photoContainer.querySelector('.popup__photo');
-  const photoTemplateElement = photoItem.cloneNode(true);
   const photoItems = elements.offer.photos;
-  photoContainer.innerHtml = '';
-  console.log(photoItems);
-  const newPhotosElements = photoItems.map((item) => {photoTemplateElement.src = item;});
-  console.log(newPhotosElements);
+  photoContainer.innerHTML = '';
+  const newPhotosElements = photoItems.map((element) => `<img src='${element}' class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
   const combinePhotosElements = newPhotosElements.join('');
-  console.log(combinePhotosElements);
   photoContainer.insertAdjacentHTML('beforeend', combinePhotosElements);
 };
-
-// const renderPhotos = (templateElement, elements) => {
-//   const photoContainer = templateElement.querySelector('.popup__photos');
-//   const photoItem = photoContainer.querySelector('.popup__photo');
-//   const photoItems = elements.offer.photos;
-
-//   photoItems.forEach((itemPhoto) =>{
-//     const photoItemTemplate = photoItem.cloneNode(true);
-//     photoItemTemplate.src = itemPhoto;
-//     photoContainer.appendChild(photoItemTemplate);
-//   });
-//   photoItem.remove();
-// };
 
 const renderCard = (element) => {
   const templateElement = cardTemplate.cloneNode(true);
