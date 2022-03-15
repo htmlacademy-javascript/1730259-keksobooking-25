@@ -24,15 +24,11 @@ const renderFeatures = (templateElement, elements) => {
 
 const renderPhotos = (templateElement, elements) => {
   const photoContainer = templateElement.querySelector('.popup__photos');
-  const photoItem = photoContainer.querySelector('.popup__photo');
   const photoItems = elements.offer.photos;
-
-  photoItems.forEach((itemPhoto) =>{
-    const photoItemTemplate = photoItem.cloneNode(true);
-    photoItemTemplate.src = itemPhoto;
-    photoContainer.appendChild(photoItemTemplate);
-  });
-  photoItem.remove();
+  photoContainer.innerHTML = '';
+  const newPhotosElements = photoItems.map((element) => `<img src='${element}' class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
+  const combinePhotosElements = newPhotosElements.join('');
+  photoContainer.insertAdjacentHTML('beforeend', combinePhotosElements);
 };
 
 const renderCard = (element) => {
