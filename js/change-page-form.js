@@ -20,4 +20,4 @@ const activatePage = () => {
   mapFilterSelects.forEach((item) => {item.disabled = false;});
 };
 
-export {deactivatePage, activatePage, adForm};
+export {adForm, deactivatePage, activatePage};
