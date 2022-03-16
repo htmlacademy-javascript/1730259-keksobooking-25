@@ -1,6 +1,7 @@
 import {generateNewUsers, SIMILAR_AD_COUNT} from './data.js';
 import {renderCard} from './card.js';
 import {deactivatePage, activatePage} from './change-page-form.js';
+import './validation-form.js';
 
 const generationData = generateNewUsers(SIMILAR_AD_COUNT);
 
