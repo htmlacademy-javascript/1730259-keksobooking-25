@@ -7,14 +7,6 @@ const ROOMS_AND_GUESTS = {
   '100': ['0'],
 };
 
-const TYPES_HOUSES_AND_PRICES = {
-  'Бунгало' : 0,
-  'Квартира': 1000,
-  'Отель' : 3000,
-  'Дом' : 5000,
-  'Дворец' : 10000,
-};
-
 const numberRoom = adForm.querySelector('[name="rooms"]');
 const numberSeats = adForm.querySelector('[name="capacity"]');
 const typesHousing = adForm.querySelector('[name="type"]');
@@ -29,16 +21,10 @@ const pristine = new Pristine (adForm, {
   errorTextClass: 'ad-form__text-error'
 }, true);
 
-const changeColorError = () => {
-  const textElement = adForm.querySelectorAll('.ad-form__text-error');
-  textElement.forEach((element) => {element.style.color = '#ff0000';});
-};
-
 const compareRooms = () => ROOMS_AND_GUESTS[numberRoom.value].includes(numberSeats.value);
 
 const onChangeNumberSeats = () => {
   pristine.validate(numberSeats);
-  changeColorError();
 };
 
 const getRoomsErrorMessages = () => {
@@ -54,17 +40,34 @@ const getRoomsErrorMessages = () => {
   }
 };
 
-pristine.addValidator(numberRoom, compareRooms, getRoomsErrorMessages);
-numberRoom.addEventListener('change', onChangeNumberSeats);
+const MIN_PRICE_HOUSING = {
+  'bungalow' : 0,
+  'flat': 1000,
+  'hotel' : 3000,
+  'house' : 5000,
+  'palace' : 10000,
+};
+
+const validatePrise = () => pricesHousing.value >= MIN_PRICE_HOUSING[typesHousing.value];
 
 typesHousing.addEventListener('change', () => {
-  pricesHousing.placeholder = TYPES_HOUSES_AND_PRICES[typesHousing.value];
-  typesHousing.min = TYPES_HOUSES_AND_PRICES[pricesHousing.value];
+  pricesHousing.placeholder = MIN_PRICE_HOUSING[typesHousing.value];
+  pricesHousing.min = MIN_PRICE_HOUSING[typesHousing.value];
 });
+
+const onTypeFormChange = () => {
+  pristine.validate(pricesHousing);
+};
+
+const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE_HOUSING[typesHousing.value]} руб.`;
+
+pristine.addValidator(numberRoom, compareRooms, getRoomsErrorMessages);
+numberRoom.addEventListener('change', onChangeNumberSeats);
+pristine.addValidator(pricesHousing, validatePrise, getPriceErrorMessage);
+typesHousing.addEventListener('change', onTypeFormChange);
 
 adForm.addEventListener('submit', (evt) => {
   if (!pristine.validate()) {
     evt.preventDefault();
-    changeColorError();
   }
 });
