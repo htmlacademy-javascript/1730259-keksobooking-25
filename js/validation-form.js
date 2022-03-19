@@ -11,6 +11,8 @@ const numberRoom = adForm.querySelector('[name="rooms"]');
 const numberSeats = adForm.querySelector('[name="capacity"]');
 const typesHousing = adForm.querySelector('[name="type"]');
 const pricesHousing = adForm.querySelector('[name="price"]');
+const timeIn = adForm.querySelector('[name="timein"]');
+const timeOut = adForm.querySelector('[name="timeout"]');
 
 const pristine = new Pristine (adForm, {
   classTo: 'ad-form__element',
@@ -60,6 +62,18 @@ const onTypeFormChange = () => {
 };
 
 const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE_HOUSING[typesHousing.value]} руб.`;
+
+const onSwitchTime = (value, elements) => {
+const meaning = elements.querySelectorAll('option');
+meaning.forEach((item) => {
+if (param.target.value === item.value) {
+item.selected = true;
+}
+});
+};
+
+timeIn.addEventListener('change', (value) => onSwitchTime(value, timeOut));
+timeOut.addEventListener('change', (value) => onSwitchTime(value, timeIn));
 
 pristine.addValidator(numberRoom, compareRooms, getRoomsErrorMessages);
 numberRoom.addEventListener('change', onChangeNumberSeats);
