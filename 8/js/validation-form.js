@@ -63,17 +63,17 @@ const onTypeFormChange = () => {
 
 const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE_HOUSING[typesHousing.value]} руб.`;
 
-const onSwitchTime = (value, elements) => {
-const meaning = elements.querySelectorAll('option');
-meaning.forEach((item) => {
-if (param.target.value === item.value) {
-item.selected = true;
-}
-});
+const onSwitchTime = (element, elements) => {
+  const meaning = elements.querySelectorAll('option');
+  meaning.forEach((item) => {
+    if (element.target.value === item.value) {
+      item.selected = true;
+    }
+  });
 };
 
-timeIn.addEventListener('change', (value) => onSwitchTime(value, timeOut));
-timeOut.addEventListener('change', (value) => onSwitchTime(value, timeIn));
+timeIn.addEventListener('change', (element) => onSwitchTime(element, timeOut));
+timeOut.addEventListener('change', (element) => onSwitchTime(element, timeIn));
 
 pristine.addValidator(numberRoom, compareRooms, getRoomsErrorMessages);
 numberRoom.addEventListener('change', onChangeNumberSeats);
