@@ -7,10 +7,21 @@ const ROOMS_AND_GUESTS = {
   '100': ['0'],
 };
 
+const MIN_PRICE_HOUSING = {
+  'bungalow' : 0,
+  'flat': 1000,
+  'hotel' : 3000,
+  'house' : 5000,
+  'palace' : 10000,
+};
+
 const numberRoom = adForm.querySelector('[name="rooms"]');
 const numberSeats = adForm.querySelector('[name="capacity"]');
 const typesHousing = adForm.querySelector('[name="type"]');
 const pricesHousing = adForm.querySelector('[name="price"]');
+const timeIn = adForm.querySelector('[name="timein"]');
+const timeOut = adForm.querySelector('[name="timeout"]');
+const timeForm = adForm.querySelector('.ad-form__element--time');
 
 const pristine = new Pristine (adForm, {
   classTo: 'ad-form__element',
@@ -20,6 +31,20 @@ const pristine = new Pristine (adForm, {
   errorTextTag: 'span',
   errorTextClass: 'ad-form__text-error'
 }, true);
+
+
+const validatePrise = () => pricesHousing.value >= MIN_PRICE_HOUSING[typesHousing.value];
+
+typesHousing.addEventListener('change', () => {
+  pricesHousing.placeholder = MIN_PRICE_HOUSING[typesHousing.value];
+  pricesHousing.min = MIN_PRICE_HOUSING[typesHousing.value];
+});
+
+const onTypeFormChange = () => {
+  pristine.validate(pricesHousing);
+};
+
+const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE_HOUSING[typesHousing.value]} руб.`;
 
 const compareRooms = () => ROOMS_AND_GUESTS[numberRoom.value].includes(numberSeats.value);
 
@@ -40,31 +65,16 @@ const getRoomsErrorMessages = () => {
   }
 };
 
-const MIN_PRICE_HOUSING = {
-  'bungalow' : 0,
-  'flat': 1000,
-  'hotel' : 3000,
-  'house' : 5000,
-  'palace' : 10000,
+const onSwitchTime = (element) => {
+  timeOut.value = element.target.value;
+  timeIn.value = element.target.value;
 };
-
-const validatePrise = () => pricesHousing.value >= MIN_PRICE_HOUSING[typesHousing.value];
-
-typesHousing.addEventListener('change', () => {
-  pricesHousing.placeholder = MIN_PRICE_HOUSING[typesHousing.value];
-  pricesHousing.min = MIN_PRICE_HOUSING[typesHousing.value];
-});
-
-const onTypeFormChange = () => {
-  pristine.validate(pricesHousing);
-};
-
-const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE_HOUSING[typesHousing.value]} руб.`;
 
 pristine.addValidator(numberRoom, compareRooms, getRoomsErrorMessages);
 numberRoom.addEventListener('change', onChangeNumberSeats);
 pristine.addValidator(pricesHousing, validatePrise, getPriceErrorMessage);
 typesHousing.addEventListener('change', onTypeFormChange);
+timeForm.addEventListener('change', (element) => onSwitchTime(element));
 
 adForm.addEventListener('submit', (evt) => {
   if (!pristine.validate()) {
