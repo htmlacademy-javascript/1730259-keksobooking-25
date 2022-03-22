@@ -23,6 +23,10 @@ const timeIn = adForm.querySelector('[name="timein"]');
 const timeOut = adForm.querySelector('[name="timeout"]');
 const timeForm = adForm.querySelector('.ad-form__element--time');
 
+pricesHousing.removeAttribute('min');
+pricesHousing.removeAttribute('max');
+pricesHousing.removeAttribute('required');
+
 const pristine = new Pristine (adForm, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form--invalid',
