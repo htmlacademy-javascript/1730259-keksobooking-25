@@ -24,7 +24,6 @@ const timeOut = adForm.querySelector('[name="timeout"]');
 const timeForm = adForm.querySelector('.ad-form__element--time');
 
 pricesHousing.removeAttribute('min');
-pricesHousing.removeAttribute('max');
 pricesHousing.removeAttribute('required');
 
 const pristine = new Pristine (adForm, {
@@ -85,3 +84,5 @@ adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
+
+export {pricesHousing, typesHousing};
