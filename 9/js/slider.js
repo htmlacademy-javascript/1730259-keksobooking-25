@@ -29,3 +29,5 @@ sliderElement.noUiSlider.on('update', () => {
 
 pricesHousing.addEventListener('change', () => sliderElement.noUiSlider.set(pricesHousing.value));
 typesHousing.addEventListener('change', () => sliderElement.noUiSlider.set(pricesHousing.placeholder));
+
+export {sliderElement};
