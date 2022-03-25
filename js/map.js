@@ -1,11 +1,11 @@
-import {deactivatePage, activatePage} from './change-page-form.js';
-import {adForm} from './change-page-form.js';
-import {renderCard} from './card.js';
+import {adForm, deactivatePage, activatePage} from './change-page-form.js';
 import {generateNewUsers, SIMILAR_AD_COUNT} from './data.js';
+import {renderCard} from './card.js';
 
 deactivatePage();
 
 const COORDINATE_ROUNDING = 5;
+
 const ZOOM_MAP = 12;
 
 const CENTER_CITY_TOKYO = {
@@ -14,7 +14,6 @@ const CENTER_CITY_TOKYO = {
 };
 
 const addressForm = adForm.querySelector('[name = "address"]');
-const resetButton = adForm.querySelector('.ad-form__reset');
 
 const getAddress = (location) => {
   const lat = location.lat.toFixed(COORDINATE_ROUNDING);
@@ -87,13 +86,4 @@ generationData.forEach((item) => {
   createMarker(item);
 });
 
-const resetMainPin = (marker) => {
-  marker.setLatLng(CENTER_CITY_TOKYO);
-  map.setView(CENTER_CITY_TOKYO, ZOOM_MAP);
-};
-
-const getResetForm = () => {
-  resetMainPin(mainPinMarker);
-};
-
-resetButton.addEventListener('click', getResetForm);
+export {map, mainPinMarker, CENTER_CITY_TOKYO, ZOOM_MAP, getAddress};

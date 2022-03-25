@@ -85,4 +85,4 @@ adForm.addEventListener('submit', (evt) => {
   }
 });
 
-export {pricesHousing, typesHousing};
+export {MIN_PRICE_HOUSING, numberRoom, pricesHousing, typesHousing, numberSeats, timeIn, timeOut};
