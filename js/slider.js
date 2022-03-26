@@ -1,21 +1,22 @@
 import {pricesHousing, typesHousing} from './validation-form.js';
 import {adForm} from './change-page-form.js';
 
+const RANGE_MIN = 0;
+const RANGE_MAX = 100000;
+
 const sliderElement = adForm.querySelector('.ad-form__slider');
 
 noUiSlider.create(sliderElement, {
   range: {
-    min: 0,
-    max: 100000,
+    min: RANGE_MIN,
+    max: RANGE_MAX,
   },
   start: pricesHousing.placeholder,
   step: 1,
   connect: 'lower',
   format: {
     to: function (value) {
-      if (Number.isInteger(value)) {
-        return value.toFixed(0);
-      }
+      return value.toFixed(0);
     },
     from: function (value) {
       return parseFloat(value);
@@ -30,4 +31,4 @@ sliderElement.noUiSlider.on('update', () => {
 pricesHousing.addEventListener('change', () => sliderElement.noUiSlider.set(pricesHousing.value));
 typesHousing.addEventListener('change', () => sliderElement.noUiSlider.set(pricesHousing.placeholder));
 
-export {sliderElement};
+export {sliderElement, RANGE_MIN, RANGE_MAX};
