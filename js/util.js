@@ -1,5 +1,3 @@
-import './util.js';
-
 const getRandomNumberSimple = (numberFrom, numberNext) => {
   if (numberFrom >= 0 && numberNext >= 0 && numberFrom < numberNext) {
     const numberMin = Math.ceil(numberFrom);

@@ -6,7 +6,6 @@ const TRANSLATE_TYPES = {
   hotel: 'Отель',
 };
 
-const mapCanvas = document.querySelector('#map-canvas');
 const cardTemplate = document.querySelector('#card')
   .content
   .querySelector('.popup');
@@ -43,7 +42,7 @@ const renderCard = (element) => {
   templateElement.querySelector('.popup__description').textContent = element.offer.description;
   renderPhotos(templateElement, element);
   templateElement.querySelector('.popup__avatar').src = element.author.avatar;
-  mapCanvas.appendChild(templateElement);
+  return templateElement;
 };
 
 export {renderCard};

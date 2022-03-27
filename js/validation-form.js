@@ -23,6 +23,9 @@ const timeIn = adForm.querySelector('[name="timein"]');
 const timeOut = adForm.querySelector('[name="timeout"]');
 const timeForm = adForm.querySelector('.ad-form__element--time');
 
+pricesHousing.removeAttribute('min');
+pricesHousing.removeAttribute('required');
+
 const pristine = new Pristine (adForm, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form--invalid',
@@ -81,3 +84,5 @@ adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
+
+export {MIN_PRICE_HOUSING, numberRoom, pricesHousing, typesHousing, numberSeats, timeIn, timeOut};
