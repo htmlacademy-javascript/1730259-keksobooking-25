@@ -1,4 +1,6 @@
 import {adForm} from './change-page-form.js';
+import {sendData} from './network.js';
+import {blockSubmitButton, unblockSubmitButton, showPopupMessage} from './util.js';
 
 const ROOMS_AND_GUESTS = {
   '1': ['1'],
@@ -79,10 +81,27 @@ pristine.addValidator(pricesHousing, validatePrise, getPriceErrorMessage);
 typesHousing.addEventListener('change', onTypeFormChange);
 timeForm.addEventListener('change', (element) => onSwitchTime(element));
 
-adForm.addEventListener('submit', (evt) => {
-  if (!pristine.validate()) {
+const setUserFormSubmit = (onSuccess) => {
+  adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
-});
 
-export {MIN_PRICE_HOUSING, numberRoom, pricesHousing, typesHousing, numberSeats, timeIn, timeOut};
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+          showPopupMessage('success');
+        },
+        () => {
+          unblockSubmitButton();
+          showPopupMessage('error');
+        },
+        new FormData(evt.target),
+      );
+    }
+  });
+};
+
+export {MIN_PRICE_HOUSING, numberRoom, pricesHousing, typesHousing, numberSeats, timeIn, timeOut, setUserFormSubmit};
