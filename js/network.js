@@ -25,12 +25,19 @@ const getData = (onSuccess) => {
 
 const sendData = (onSuccess, onFail, body) => () => {
   fetch(
-    SERVER, {
+    SERVER,
+    {
       method: 'POST',
       body,
     },
   )
-    .then((response) => (response.ok) ? onSuccess(): onFail())
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        onFail();
+      }
+    })
     .catch(() => onFail());
 };
 

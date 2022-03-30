@@ -1,6 +1,7 @@
 import {adForm} from './change-page-form.js';
+import {blockSubmitButton, unblockSubmitButton} from './util.js';
+import {getResetForm} from './reset-form.js';
 import {sendData} from './network.js';
-import {blockSubmitButton, unblockSubmitButton, showPopupMessage} from './util.js';
 
 const ROOMS_AND_GUESTS = {
   '1': ['1'],
@@ -21,7 +22,7 @@ const numberRoom = adForm.querySelector('[name="rooms"]');
 const numberSeats = adForm.querySelector('[name="capacity"]');
 const typesHousing = adForm.querySelector('[name="type"]');
 const pricesHousing = adForm.querySelector('[name="price"]');
-const timeIn = adForm.querySelector('[name="timein"]');
+const timeIn = adForm.querySelector('[name="timein');
 const timeOut = adForm.querySelector('[name="timeout"]');
 const timeForm = adForm.querySelector('.ad-form__element--time');
 
@@ -81,7 +82,7 @@ pristine.addValidator(pricesHousing, validatePrise, getPriceErrorMessage);
 typesHousing.addEventListener('change', onTypeFormChange);
 timeForm.addEventListener('change', (element) => onSwitchTime(element));
 
-const setUserFormSubmit = (onSuccess) => {
+const setUserFormSubmit = (onSuccess, onError) => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -92,11 +93,11 @@ const setUserFormSubmit = (onSuccess) => {
         () => {
           onSuccess();
           unblockSubmitButton();
-          showPopupMessage('success');
+          getResetForm();
         },
         () => {
+          onError();
           unblockSubmitButton();
-          showPopupMessage('error');
         },
         new FormData(evt.target),
       );
