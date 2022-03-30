@@ -1,7 +1,6 @@
 import {adForm} from './change-page-form.js';
 import {sendData} from './network.js';
 import {blockSubmitButton, unblockSubmitButton} from './util.js';
-import {openSuccessPopup, openErrorPopup} from './popup.js';
 import { getResetForm } from './reset-form.js';
 
 const ROOMS_AND_GUESTS = {
@@ -98,7 +97,7 @@ const setUserFormSubmit = (onSuccess, onFail) => {
         },
         () => {
           onFail();
-          openErrorPopup();
+          unblockSubmitButton();
         },
         new FormData(evt.target),
       );

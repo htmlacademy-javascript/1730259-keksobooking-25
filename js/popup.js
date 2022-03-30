@@ -1,5 +1,24 @@
 import {isEscEvent} from './util.js';
 
+const onDocumentEscKeydown = (evt) => {
+  if (isEscEvent(evt)) {
+    evt.preventDefault();
+    onClosesPopup();
+  }
+};
+
+const onDocumentMousedown = (() => onClosesPopup());
+
+const onClosesPopup = () => {
+  document.querySelector('.popup').remove();
+  removeHandlers();
+};
+
+const removeHandlers = () => {
+  document.removeEventListener('mousedown', onDocumentMousedown);
+  document.removeEventListener('keydown', onDocumentEscKeydown);
+};
+
 const createHandlers = () => {
   document.addEventListener('mousedown', onDocumentMousedown);
   document.addEventListener('keydown', onDocumentEscKeydown);
@@ -15,25 +34,6 @@ const openErrorPopup = () => {
   const TemplateElement = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
   document.body.append(TemplateElement);
   createHandlers();
-};
-
-const removeHandlers = () => {
-  document.removeEventListener('mousedown', onDocumentMousedown);
-  document.removeEventListener('keydown', onDocumentEscKeydown);
-};
-
-const onClosesPopup = () => {
-  document.querySelector('.popup').remove();
-  removeHandlers();
-};
-
-const onDocumentMousedown = (() => onClosesPopup());
-
-const onDocumentEscKeydown = (evt) => {
-  if (isEscEvent(evt)) {
-    evt.preventDefault();
-    onClosesPopup();
-  }
 };
 
 export {openSuccessPopup, openErrorPopup};
