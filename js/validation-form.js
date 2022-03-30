@@ -1,7 +1,7 @@
 import {adForm} from './change-page-form.js';
 import {sendData} from './network.js';
-import {blockSubmitButton, unblockSubmitButton, showPopupMessage} from './util.js';
-import {openSuccessPopup, openErrorPopup} from './popup.js'
+import {blockSubmitButton, unblockSubmitButton} from './util.js';
+import {openSuccessPopup, openErrorPopup} from './popup.js';
 
 const ROOMS_AND_GUESTS = {
   '1': ['1'],

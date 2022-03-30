@@ -7,7 +7,7 @@ const onDocumentEscKeydown = (evt) => {
   }
 };
 
-const onDocumentMousedown = ((evt) => onClosesPopup()); 
+const onDocumentMousedown = (() => onClosesPopup());
 
 const createHandlers = () => {
   document.addEventListener('mousedown', onDocumentMousedown);
