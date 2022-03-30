@@ -8,4 +8,4 @@ import './send-form.js';
 
 getData((dataUsers) => createData(dataUsers.slice(0, SIMILAR_AD_COUNT)));
 
-setUserFormSubmit(getResetForm);
+setUserFormSubmit(showPopupMessage('success'));
