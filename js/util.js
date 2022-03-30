@@ -53,10 +53,4 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-const showPopupMessage = (type) => {
-  const messageTemplate = document.querySelector(`#${type}`).content.querySelector(`.${type}`);
-  const messageElement = messageTemplate.cloneNode(true);
-  document.body.insertAdjacentElement('beforeend', messageElement);
-};
-
-export {getRandomNumberSimple, getRandomNumberFloat, getRandomElement, showAlert, blockSubmitButton, unblockSubmitButton, showPopupMessage};
+export {getRandomNumberSimple, getRandomNumberFloat, getRandomElement, showAlert, blockSubmitButton, unblockSubmitButton};
