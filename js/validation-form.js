@@ -91,6 +91,7 @@ const setUserFormSubmit = (onSuccess) => {
       sendData(
         () => {
           onSuccess();
+          showPopupMessage('success')
           unblockSubmitButton();
         },
         () => {
