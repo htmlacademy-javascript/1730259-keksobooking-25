@@ -1,5 +1,18 @@
 import {isEscEvent} from './util.js';
 
+const openSuccessPopup = () => {
+  const TemplateElement = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
+  document.body.append(TemplateElement);
+  createHandlers();
+};
+
+const openErrorPopup = () => {
+  const TemplateElement = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
+  document.body.append(TemplateElement);
+  createHandlers();
+};
+
+
 const onDocumentMousedown = (() => onClosesPopup());
 
 const onDocumentEscKeydown = (evt) => {
@@ -24,16 +37,5 @@ const onClosesPopup = () => {
   removeHandlers();
 };
 
-const openSuccessPopup = () => {
-  const TemplateElement = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
-  document.body.append(TemplateElement);
-  createHandlers();
-};
-
-const openErrorPopup = () => {
-  const TemplateElement = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
-  document.body.append(TemplateElement);
-  createHandlers();
-};
 
 export {openSuccessPopup, openErrorPopup};
