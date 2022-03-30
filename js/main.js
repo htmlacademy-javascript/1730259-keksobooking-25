@@ -6,4 +6,4 @@ import {getData} from './network.js';
 
 getData((dataUsers) => createData(dataUsers.slice(0, SIMILAR_AD_COUNT)));
 
-setUserFormSubmit();
+setUserFormSubmit(openSuccessPopup, openErrorPopup);
