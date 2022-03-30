@@ -1,7 +1,7 @@
 import {adForm} from './change-page-form.js';
-import {sendData} from './network.js';
 import {blockSubmitButton, unblockSubmitButton} from './util.js';
 import { getResetForm } from './reset-form.js';
+import {sendData} from './network.js';
 
 const ROOMS_AND_GUESTS = {
   '1': ['1'],
