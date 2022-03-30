@@ -2,6 +2,7 @@ import {adForm} from './change-page-form.js';
 import {sendData} from './network.js';
 import {blockSubmitButton, unblockSubmitButton} from './util.js';
 import {openSuccessPopup, openErrorPopup} from './popup.js';
+import { getResetForm } from './reset-form.js';
 
 const ROOMS_AND_GUESTS = {
   '1': ['1'],
@@ -82,7 +83,7 @@ pristine.addValidator(pricesHousing, validatePrise, getPriceErrorMessage);
 typesHousing.addEventListener('change', onTypeFormChange);
 timeForm.addEventListener('change', (element) => onSwitchTime(element));
 
-const setUserFormSubmit = (onSuccess) => {
+const setUserFormSubmit = (onSuccess, onFail) => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -92,11 +93,11 @@ const setUserFormSubmit = (onSuccess) => {
       sendData(
         () => {
           onSuccess();
-          openSuccessPopup();
+          getResetForm();
           unblockSubmitButton();
         },
         () => {
-          unblockSubmitButton();
+          onFail();
           openErrorPopup();
         },
         new FormData(evt.target),
