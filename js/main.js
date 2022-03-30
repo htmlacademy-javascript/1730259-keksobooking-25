@@ -1,5 +1,4 @@
 import {setUserFormSubmit} from './validation-form.js';
-import './slider.js';
 import {createData} from './map.js';
 import {SIMILAR_AD_COUNT} from './data.js';
 import {getData} from './network.js';
