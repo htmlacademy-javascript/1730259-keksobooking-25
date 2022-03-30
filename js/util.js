@@ -1,5 +1,8 @@
 import {adForm} from './change-page-form.js';
 
+const ESC_ALL_BROWSERS = 'Escape';
+const ESC_IE = 'Esc';
+
 const submitButton = adForm.querySelector('.ad-form__submit');
 
 const getRandomNumberSimple = (numberFrom, numberNext) => {
@@ -53,4 +56,6 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-export {getRandomNumberSimple, getRandomNumberFloat, getRandomElement, showAlert, blockSubmitButton, unblockSubmitButton};
+const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
+
+export {getRandomNumberSimple, getRandomNumberFloat, getRandomElement, showAlert, blockSubmitButton, unblockSubmitButton, isEscEvent};

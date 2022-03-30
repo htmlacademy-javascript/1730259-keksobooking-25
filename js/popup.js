@@ -1,32 +1,39 @@
-const ESC_ALL_BROWSERS = 'Escape';
-const ESC_IE = 'Esc';
+import {isEscEvent} from './util.js';
 
-const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
-
-const successPopup = () => {
-    const typeMessage = document.querySelector('#success').content.cloneNode(true);
-    openPopupMessage();
+const onDocumentEscKeydown = (evt) => {
+  if (isEscEvent(evt)) {
+    evt.preventDefault();
+    onClosesPopup();
+  }
 };
 
-const errorPopup = () => {
-    const typeMessage = document.querySelector('#error').content.cloneNode(true);
-    openPopupMessage();
+const onDocumentMousedown = ((evt) => onClosesPopup()); 
+
+const createHandlers = () => {
+  document.addEventListener('mousedown', onDocumentMousedown);
+  document.addEventListener('keydown', onDocumentEscKeydown);
 };
 
-const openPopupMessage = () => {
-    document.body.append(typeMessage);
-  };
-
-const removePopupMessage = () => {
-    document.querySelector('.success').remove();
-    document.querySelector('.error').remove();
-    document.querySelector('.error__button')
+const removeHandlers = () => {
+  document.removeEventListener('mousedown', onDocumentMousedown);
+  document.removeEventListener('keydown', onDocumentEscKeydown);
 };
 
-const onWindowKeydown = () => {
-    if (isEscapeKey(evt)) {
-        evt.preventDefault();
-        onDocumentClick();
-    }
+const onClosesPopup = () => {
+  document.querySelector('.popup').remove();
+  removeHandlers();
 };
 
+const openSuccessPopup = () => {
+  const TemplateElement = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
+  document.body.append(TemplateElement);
+  createHandlers();
+};
+
+const openErrorPopup = () => {
+  const TemplateElement = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
+  document.body.append(TemplateElement);
+  createHandlers();
+};
+
+export {openSuccessPopup, openErrorPopup};
