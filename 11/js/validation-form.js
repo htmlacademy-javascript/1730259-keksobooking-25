@@ -82,7 +82,7 @@ pristine.addValidator(pricesHousing, validatePrise, getPriceErrorMessage);
 typesHousing.addEventListener('change', onTypeFormChange);
 timeForm.addEventListener('change', (element) => onSwitchTime(element));
 
-const setUserFormSubmit = (onSuccess, onError) => {
+const setUserFormSubmit = (onSuccess, onFail) => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -96,10 +96,10 @@ const setUserFormSubmit = (onSuccess, onError) => {
           getResetForm();
         },
         () => {
-          onError();
+          onFail();
           unblockSubmitButton();
         },
-        new FormData(evt.target),
+        new FormData(evt.target)
       );
     }
   });
