@@ -34,13 +34,13 @@ const renderPhotos = (templateElement, elements) => {
     const combinePhotosElements = newPhotosElements.join('');
     photoContainer.insertAdjacentHTML('beforeend', combinePhotosElements);
   } else {
-    photoContainer.remove();
+    photoContainer.classList.add('hidden');
   }
 };
 
 const checkAvialableData = (element, meaning) => {
   if (meaning === undefined) {
-    element.remove();
+    element.classList.add('hidden');
   }
 };
 

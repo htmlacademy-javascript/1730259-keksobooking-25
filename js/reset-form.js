@@ -9,9 +9,6 @@ const titleForm = adForm.querySelector('#title');
 const description = adForm.querySelector('#description');
 const featuresCheckbox = adForm.querySelectorAll('.features__checkbox');
 
-// const choiseTime = timeIn.options;
-// const indexTime = choiseTime.selectedIndex;
-
 const resetMainPin = (marker) => {
   marker.setLatLng(CENTER_CITY_TOKYO);
   map.setView(CENTER_CITY_TOKYO, ZOOM_MAP);
@@ -29,8 +26,6 @@ const resetPrice = () => {
 };
 
 const resetTime = () => {
-  // timeIn.value = choiseTime[indexTime].value;
-  // timeOut.value = choiseTime[indexTime].value;
   timeIn.value = TIMES[0];
   timeOut.value = TIMES[0];
 };
