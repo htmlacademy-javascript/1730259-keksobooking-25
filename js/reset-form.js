@@ -1,8 +1,8 @@
+import {timeIn, timeOut, typesHousing, MIN_PRICE_HOUSING, numberRoom, pricesHousing, numberSeats} from './validation-form.js';
 import {map, mainPinMarker, getAddress, CENTER_CITY_TOKYO, ZOOM_MAP} from './map.js';
 import {adForm} from './change-page-form.js';
-import {TIMES} from './data.js';
-import {typesHousing, MIN_PRICE_HOUSING, numberRoom, pricesHousing, numberSeats, timeIn, timeOut} from './validation-form.js';
 import {sliderElement, RANGE_MIN, RANGE_MAX} from './slider.js';
+import {TIMES} from './data.js';
 
 const resetButton = adForm.querySelector('.ad-form__reset');
 const titleForm = adForm.querySelector('#title');
@@ -53,3 +53,5 @@ resetButton.addEventListener('click', (evt) => {
   evt.preventDefault();
   getResetForm();
 });
+
+export {getResetForm};

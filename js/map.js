@@ -1,5 +1,4 @@
 import {adForm, deactivatePage, activatePage} from './change-page-form.js';
-import {generateNewUsers, SIMILAR_AD_COUNT} from './data.js';
 import {renderCard} from './card.js';
 
 deactivatePage();
@@ -61,8 +60,6 @@ mainPinMarker.on('move', (evt) => {
   getAddress(evt.target.getLatLng());
 });
 
-const generationData = generateNewUsers(SIMILAR_AD_COUNT);
-
 const markerGroup = L.layerGroup().addTo(map);
 
 const createMarker = (item) => {
@@ -82,8 +79,10 @@ const createMarker = (item) => {
     .bindPopup(renderCard(item));
 };
 
-generationData.forEach((item) => {
-  createMarker(item);
-});
+const createData = (element) => {
+  element.forEach((item) => {
+    createMarker(item);
+  });
+};
 
-export {map, mainPinMarker, CENTER_CITY_TOKYO, ZOOM_MAP, getAddress};
+export {map, mainPinMarker, CENTER_CITY_TOKYO, ZOOM_MAP, getAddress, createData};

@@ -124,4 +124,4 @@ const generateNewItem = () => {
 
 const generateNewUsers = (element) => Array.from({length: element}, generateNewItem);
 
-export {generateNewUsers,generateNewItem, SIMILAR_AD_COUNT, TIMES};
+export {generateNewUsers, SIMILAR_AD_COUNT, TIMES};
