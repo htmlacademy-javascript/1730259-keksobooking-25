@@ -1,4 +1,4 @@
-import {adForm} from './change-page-form.js';
+import {adForm, mapFilter} from './change-page-form.js';
 
 const ESC_ALL_BROWSERS = 'Escape';
 const ESC_IE = 'Esc';
@@ -46,4 +46,10 @@ const showPopupMessage = (type) => {
 
 const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
 
-export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert};
+const onFilterChange = (cb) => {
+  mapFilter.addEventListener('change', () => {
+    cb();
+  });
+};
+
+export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange};

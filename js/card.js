@@ -56,7 +56,6 @@ const renderCard = (element) => {
   templateElement.querySelector('.popup__description').textContent = element.offer.description;
   renderPhotos(templateElement, element);
   templateElement.querySelector('.popup__avatar').src = element.author.avatar;
-
   checkAvialableData(templateElement.querySelector('.popup__description'), element.offer.description);
   checkAvialableData(templateElement.querySelector('.popup__avatar'), element.author.avatar);
   return templateElement;

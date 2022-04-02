@@ -2,7 +2,12 @@ import {timeIn, timeOut, typesHousing, MIN_PRICE_HOUSING, numberRoom, pricesHous
 import {map, mainPinMarker, getAddress, CENTER_CITY_TOKYO, ZOOM_MAP} from './map.js';
 import {adForm, mapFilter} from './change-page-form.js';
 import {sliderElement, RANGE_MIN, RANGE_MAX} from './slider.js';
-import {TIMES} from './data.js';
+
+const TIMES = [
+  '12:00',
+  '13:00',
+  '14:00',
+];
 
 const resetButton = adForm.querySelector('.ad-form__reset');
 const titleForm = adForm.querySelector('#title');
@@ -12,7 +17,7 @@ const filterHouse = mapFilter.querySelector('[name="housing-type"]');
 const filterPrice = mapFilter.querySelector('[name="housing-price"]');
 const filterRooms = mapFilter.querySelector('[name="housing-rooms"]');
 const filterGuests = mapFilter.querySelector('[name="housing-guests"]');
-const filterFeatures = mapFilter.querySelectorAll('.map__checkbox');
+const filterFeatures = mapFilter.querySelectorAll('#map__features');
 
 const resetMainPin = (marker) => {
   marker.setLatLng(CENTER_CITY_TOKYO);
@@ -67,4 +72,4 @@ resetButton.addEventListener('click', (evt) => {
   getResetForm();
 });
 
-export {getResetForm};
+export {getResetForm, filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures};

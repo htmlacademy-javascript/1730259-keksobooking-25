@@ -1,8 +1,11 @@
 import {adForm, deactivateForm, activateForm, diactivateFilters} from './change-page-form.js';
+import {filterCard} from './filters.js';
 import {renderCard} from './card.js';
 
 deactivateForm();
 diactivateFilters();
+
+// const SIMILAR_AD_COUNT = 10;
 
 const COORDINATE_ROUNDING = 5;
 
@@ -81,7 +84,7 @@ const createMarker = (item) => {
 };
 
 const createData = (element) => {
-  element.forEach((item) => {
+  element.slice().sort(filterCard)/*.slice(0, SIMILAR_AD_COUNT)*/.forEach((item) => {
     createMarker(item);
   });
 };
