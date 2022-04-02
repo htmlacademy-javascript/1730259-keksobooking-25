@@ -1,7 +1,8 @@
-import {adForm, deactivatePage, activatePage} from './change-page-form.js';
+import {adForm, deactivateForm, activateForm, diactivateFilters} from './change-page-form.js';
 import {renderCard} from './card.js';
 
-deactivatePage();
+deactivateForm();
+diactivateFilters();
 
 const COORDINATE_ROUNDING = 5;
 
@@ -23,7 +24,7 @@ const getAddress = (location) => {
 const map = L.map('map-canvas')
   .on('load', () => {
     getAddress(CENTER_CITY_TOKYO);
-    activatePage();
+    activateForm();
   })
   .setView(CENTER_CITY_TOKYO, ZOOM_MAP);
 
