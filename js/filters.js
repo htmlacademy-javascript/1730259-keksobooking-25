@@ -24,13 +24,11 @@ const choosePrices = (element) => {
 // };
 
 const filterCard = (element) => {
-  switch (element===true) {
-    case chooseHouses(element) : return element;
-    case chooseRooms(element) : return element;
-    case chooseGuests(element) : return element;
-    case choosePrices(element) : return element;
-    // case chooseFeatures(element) : return element;
-  }
+  chooseHouses(element) &&
+  chooseRooms(element) &&
+  chooseGuests(element) &&
+  choosePrices(element);
+  // chooseFeatures(element);
 };
 
 export {filterCard};
