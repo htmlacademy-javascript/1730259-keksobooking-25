@@ -33,6 +33,7 @@ const map = L.map('map-canvas')
   .on('load', () => {
     getAddress(CENTER_CITY_TOKYO);
     activateForm();
+    activateFilters();
   })
   .setView(CENTER_CITY_TOKYO, ZOOM_MAP);
 
@@ -92,7 +93,6 @@ const createData = (element) => {
   markerGroup.clearLayers();
   element.filter(onFilterCard).slice(0, SIMILAR_AD_COUNT).forEach((item) => {
     createMarker(item);
-    activateFilters();
   });
 };
 

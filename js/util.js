@@ -1,4 +1,4 @@
-import {adForm, mapFilter, diactivateFilters} from './change-page-form.js';
+import {adForm, mapFilter} from './change-page-form.js';
 
 const ESC_ALL_BROWSERS = 'Escape';
 const ESC_IE = 'Esc';
@@ -49,7 +49,10 @@ const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
 const onFilterChange = (cb) => {
 
   mapFilter.addEventListener('change', () => {
-    diactivateFilters();
+    cb();
+  });
+
+  mapFilter.addEventListener('reset', () => {
     cb();
   });
 };
