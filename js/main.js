@@ -16,7 +16,7 @@ getData((dataUsers) => {
   onFilterChange(debounce(
     () => createData(dataUsers),
     RERENDER_DELAY,
-    ));
+  ));
 });
 
 setUserFormSubmit(showSuccessPopup, showErrorPopup);

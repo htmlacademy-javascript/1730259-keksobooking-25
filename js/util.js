@@ -2,6 +2,7 @@ import {adForm, mapFilter} from './change-page-form.js';
 
 const ESC_ALL_BROWSERS = 'Escape';
 const ESC_IE = 'Esc';
+const DELAY_TIME = 5000;
 
 const submitButton = adForm.querySelector('.ad-form__submit');
 
