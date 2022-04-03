@@ -29,7 +29,6 @@ const filterCard = (element) => {
   chooseGuests(element);
   choosePrices(element);
   chooseFeatures(element);
-  return element
 };
 
 export {filterCard};
