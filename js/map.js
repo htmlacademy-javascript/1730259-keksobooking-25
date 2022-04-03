@@ -5,7 +5,7 @@ import {renderCard} from './card.js';
 deactivateForm();
 diactivateFilters();
 
-// const SIMILAR_AD_COUNT = 10;
+const SIMILAR_AD_COUNT = 10;
 
 const COORDINATE_ROUNDING = 5;
 
@@ -85,7 +85,7 @@ const createMarker = (item) => {
 
 const createData = (element) => {
   markerGroup.clearLayers();
-  element.filter(filterCard)/*.slice(0, SIMILAR_AD_COUNT)*/.forEach((item) => {
+  element.filter(filterCard).slice(0, SIMILAR_AD_COUNT).forEach((item) => {
     createMarker(item);
   });
 };

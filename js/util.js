@@ -2,7 +2,6 @@ import {adForm, mapFilter} from './change-page-form.js';
 
 const ESC_ALL_BROWSERS = 'Escape';
 const ESC_IE = 'Esc';
-const DELAY_TIME = 5000;
 
 const submitButton = adForm.querySelector('.ad-form__submit');
 
@@ -50,6 +49,17 @@ const onFilterChange = (cb) => {
   mapFilter.addEventListener('change', () => {
     cb();
   });
+  mapFilter.addEventListener('reset', () => {
+    cb();
+  });
 };
 
-export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange, debounce};
