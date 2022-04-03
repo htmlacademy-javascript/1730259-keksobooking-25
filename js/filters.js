@@ -18,17 +18,18 @@ const choosePrices = (element) => {
   }
 };
 
-// const chooseFeatures = (element) => {
-//   const checkedFeatures = Array.from(filterFeatures.querySelectorAll('input[type="checkbox"]:checked')).map((item) => item.value);
-//   return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
-// };
+const chooseFeatures = (element) => {
+  const checkedFeatures = Array.from(filterFeatures.querySelectorAll('input[type="checkbox"]:checked')).map((item) => item.value);
+  return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
+};
 
 const filterCard = (element) => {
   chooseHouses(element);
   chooseRooms(element);
   chooseGuests(element);
   choosePrices(element);
-  // chooseFeatures(element);
+  chooseFeatures(element);
+  return element
 };
 
 export {filterCard};

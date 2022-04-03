@@ -85,7 +85,7 @@ const createMarker = (item) => {
 
 const createData = (element) => {
   markerGroup.clearLayers();
-  element.slice().filter(filterCard).slice(0, SIMILAR_AD_COUNT).forEach((item) => {
+  element.slice().filter(filterCard)/*.slice(0, SIMILAR_AD_COUNT)*/.forEach((item) => {
     createMarker(item);
   });
 };
