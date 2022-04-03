@@ -1,13 +1,20 @@
-import {filterHouse, filterPrice, filterRooms, filterGuests/*, filterFeatures*/, Default} from './reset-form.js';
+import {Default} from './reset-form.js';
+import {mapFilter} from './change-page-form.js';
 
 const Price = {
   MIN_PRICE: 10000,
   MAX_PRICE: 50000,
 };
 
-const chooseHouses = (element) => filterHouse.value === Default.TIPE_CHANGE ? true: element.offer.type === filterHouse.value;
-const chooseRooms = (element) => filterRooms.value === Default.TIPE_CHANGE ? true: element.offer.rooms === filterRooms.value;
-const chooseGuests = (element) => filterGuests.value === Default.TIPE_CHANGE ? true: element.offer.guests === filterGuests.value;
+const filterHouse = mapFilter.querySelector('[name="housing-type"]');
+const filterPrice = mapFilter.querySelector('[name="housing-price"]');
+const filterRooms = mapFilter.querySelector('[name="housing-rooms"]');
+const filterGuests = mapFilter.querySelector('[name="housing-guests"]');
+const filterFeatures = mapFilter.querySelectorAll('.map__checkbox');
+
+const chooseHouses = (element) => filterHouse.value === Default.TIPE_CHANGE || element.offer.type === filterHouse.value;
+const chooseRooms = (element) => filterRooms.value === Default.TIPE_CHANGE || element.offer.rooms === +filterRooms.value;
+const chooseGuests = (element) => filterGuests.value === Default.TIPE_CHANGE || element.offer.guests === +filterGuests.value;
 
 const choosePrices = (element) => {
   switch (filterPrice.value) {
@@ -18,17 +25,21 @@ const choosePrices = (element) => {
   }
 };
 
-// const chooseFeatures = (element) => {
-//   const checkedFeatures = Array.from(filterFeatures.querySelectorAll('input[type="checkbox"]:checked')).map((item) => item.value);
-//   return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
-// };
+const chooseFeatures = (element) => Array.from(filterFeatures).every((filterFeature) => {
+  if (!filterFeature.checked) {
+    return true;
+  }
+  if (!element.offer.features) {
+    return false;
+  }
+  return element.offer.features.includes(filterFeature.value);
+});
 
-const filterCard = (element) => {
+const onFilterCard = (element) =>
   chooseHouses(element) &&
   chooseRooms(element) &&
   chooseGuests(element) &&
-  choosePrices(element);
-  // chooseFeatures(element);
-};
+  choosePrices(element) &&
+  chooseFeatures(element);
 
-export {filterCard};
+export {filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures, onFilterCard};

@@ -47,9 +47,22 @@ const showPopupMessage = (type) => {
 const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
 
 const onFilterChange = (cb) => {
+
   mapFilter.addEventListener('change', () => {
+    cb();
+  });
+
+  mapFilter.addEventListener('reset', () => {
     cb();
   });
 };
 
-export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange, debounce};
