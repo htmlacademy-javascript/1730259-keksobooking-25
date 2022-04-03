@@ -1,4 +1,4 @@
-import {filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures, Default} from './reset-form.js';
+import {filterHouse, filterPrice, filterRooms, filterGuests/*, filterFeatures*/, Default} from './reset-form.js';
 
 const Price = {
   MIN_PRICE: 10000,
