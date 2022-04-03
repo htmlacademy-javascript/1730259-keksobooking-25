@@ -5,9 +5,9 @@ const Price = {
   MAX_PRICE: 50000,
 };
 
-const chooseHouses = (element) => filterHouse.value === Default.TIPES[0] ? true: element.offer.type === filterHouse.value;
-const chooseRooms = (element) => filterRooms.value === Default.TIPES[0] ? true: element.offer.rooms === filterRooms.value;
-const chooseGuests = (element) => filterGuests.value === Default.TIPES[0] ? true: element.offer.guests === filterGuests.value;
+const chooseHouses = (element) => filterHouse.value === Default.TIPE_CHANGE ? true: element.offer.type === filterHouse.value;
+const chooseRooms = (element) => filterRooms.value === Default.TIPE_CHANGE ? true: element.offer.rooms === filterRooms.value;
+const chooseGuests = (element) => filterGuests.value === Default.TIPE_CHANGE ? true: element.offer.guests === filterGuests.value;
 
 const choosePrices = (element) => {
   switch (filterPrice.value) {
