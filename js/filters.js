@@ -20,7 +20,7 @@ const choosePrices = (element) => {
 
 const chooseFeatures = (element) => {
   const checkedFeatures = Array.from(filterFeatures.querySelectorAll('input[type="checkbox"]:checked')).map((item) => item.value);
-  return (element.offer.features) ? checkedFeatures.every((checkedFeatures) => element.offer.features.includes(checkedFeatures)) : checkedFeatures.length === 0;
+  return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
 };
 
 const filterCard = (element) => {
