@@ -23,11 +23,11 @@ const choosePrices = (element) => {
 //   return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
 // };
 
-const filterCard = () => {
-  chooseHouses();
-  chooseRooms();
-  chooseGuests();
-  choosePrices();
+const filterCard = (element) => {
+  chooseHouses(element);
+  chooseRooms(element);
+  chooseGuests(element);
+  choosePrices(element);
   // chooseFeatures();
 };
 
