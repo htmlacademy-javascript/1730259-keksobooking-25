@@ -1,4 +1,4 @@
-import {filterHouse, filterPrice, filterRooms, filterGuests/*, filterFeatures*/, Default} from './reset-form.js';
+import {filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures, Default} from './reset-form.js';
 
 const Price = {
   MIN_PRICE: 10000,
@@ -18,17 +18,17 @@ const choosePrices = (element) => {
   }
 };
 
-// const chooseFeatures = (element) => {
-//   const checkedFeatures = Array.from(filterFeatures.querySelectorAll('input[type="checkbox"]:checked')).map((item) => item.value);
-//   return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
-// };
+const chooseFeatures = (element) => {
+  const checkedFeatures = Array.from(filterFeatures.querySelectorAll('input[type="checkbox"]:checked')).map((item) => item.value);
+  return (element.offer.features) ? checkedFeatures.every((feature) => element.offer.features.includes(feature)) : checkedFeatures.length === 0;
+};
 
 const filterCard = (element) => {
   chooseHouses(element);
   chooseRooms(element);
   chooseGuests(element);
   choosePrices(element);
-  // chooseFeatures(element);
+  chooseFeatures(element);
 };
 
 export {filterCard};
