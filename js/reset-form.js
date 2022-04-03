@@ -5,15 +5,11 @@ import {sliderElement, RANGE_MIN, RANGE_MAX} from './slider.js';
 
 const Default = {
   TIME: '12:00',
-  TIPES = [
-    'any',
-    '',
-    'flat',
-  ],
-  NUMBERS = [
-    1,
-    3,
-  ],
+  TIPE_CHANGE: 'any',
+  TIPE_INPUT: '',
+  TIPE_HOUSE: 'flat',
+  NUMBERS_ROOM: 1,
+  NUMBERS_SEAT: 3,
 };
 
 const resetButton = adForm.querySelector('.ad-form__reset');
@@ -56,15 +52,15 @@ const resetForm = () => {
   resetPrice();
   resetTime();
   getAddress(CENTER_CITY_TOKYO);
-  filterHouse.value = Default.TIPES[0];
-  filterPrice.value = Default.TIPES[0];
-  filterRooms.value= Default.TIPES[0];
-  filterGuests.value = Default.TIPES[0];
-  titleForm.value = Default.TIPES[1];
-  description.value = Default.TIPES[1];
-  typesHousing.value = Default.TIPES[2];
-  numberRoom.value = Default.NUMBERS[0];
-  numberSeats.value = Default.NUMBERS[1];
+  filterHouse.value = Default.TIPE_CHANGE;
+  filterPrice.value = Default.TIPE_CHANGE;
+  filterRooms.value= Default.TIPE_CHANGE;
+  filterGuests.value = Default.TIPE_CHANGE;
+  titleForm.value = Default.TIPE_INPUT;
+  description.value = Default.TIPE_INPUT;
+  typesHousing.value = Default.TIPE_HOUSE;
+  numberRoom.value = Default.NUMBERS_ROOM;
+  numberSeats.value = Default.NUMBERS_SEAT;
   checkboxReset(featuresCheckbox);
   checkboxReset(filterFeatures);
 };
