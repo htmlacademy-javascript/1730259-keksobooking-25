@@ -3,6 +3,7 @@ import {map, mainPinMarker, getAddress, CENTER_CITY_TOKYO, ZOOM_MAP} from './map
 import {adForm} from './change-page-form.js';
 import {sliderElement, RANGE_MIN, RANGE_MAX} from './slider.js';
 import {filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures} from './filters.js';
+import {resetPicture} from './pictures.js';
 
 const Default = {
   TIME: '12:00',
@@ -59,6 +60,7 @@ const resetForm = () => {
   numberSeats.value = Default.NUMBERS_SEAT;
   checkboxReset(featuresCheckbox);
   checkboxReset(filterFeatures);
+  resetPicture();
 };
 
 const getResetForm = () => {
