@@ -2,7 +2,17 @@ import {timeIn, timeOut, typesHousing, MIN_PRICE_HOUSING, numberRoom, pricesHous
 import {map, mainPinMarker, getAddress, CENTER_CITY_TOKYO, ZOOM_MAP} from './map.js';
 import {adForm} from './change-page-form.js';
 import {sliderElement, RANGE_MIN, RANGE_MAX} from './slider.js';
-import {TIMES} from './data.js';
+import {filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures} from './filters.js';
+import {resetPicture} from './pictures.js';
+
+const Default = {
+  TIME: '12:00',
+  TIPE_CHANGE: 'any',
+  TIPE_INPUT: '',
+  TIPE_HOUSE: 'flat',
+  NUMBERS_ROOM: 1,
+  NUMBERS_SEAT: 3,
+};
 
 const resetButton = adForm.querySelector('.ad-form__reset');
 const titleForm = adForm.querySelector('#title');
@@ -26,22 +36,31 @@ const resetPrice = () => {
 };
 
 const resetTime = () => {
-  timeIn.value = TIMES[0];
-  timeOut.value = TIMES[0];
+  timeIn.value = Default.TIME;
+  timeOut.value = Default.TIME;
+};
+const checkboxReset = (element) => {
+  element.forEach((value) => {
+    value.checked = false;
+  });
 };
 
 const resetForm = () => {
   resetPrice();
   resetTime();
   getAddress(CENTER_CITY_TOKYO);
-  titleForm.value = '';
-  description.value = '';
-  typesHousing.value = 'flat';
-  numberRoom.value = 1;
-  numberSeats.value = 3;
-  featuresCheckbox.forEach((value) => {
-    value.checked = false;
-  });
+  filterHouse.value = Default.TIPE_CHANGE;
+  filterPrice.value = Default.TIPE_CHANGE;
+  filterRooms.value= Default.TIPE_CHANGE;
+  filterGuests.value = Default.TIPE_CHANGE;
+  titleForm.value = Default.TIPE_INPUT;
+  description.value = Default.TIPE_INPUT;
+  typesHousing.value = Default.TIPE_HOUSE;
+  numberRoom.value = Default.NUMBERS_ROOM;
+  numberSeats.value = Default.NUMBERS_SEAT;
+  checkboxReset(featuresCheckbox);
+  checkboxReset(filterFeatures);
+  resetPicture();
 };
 
 const getResetForm = () => {
@@ -54,4 +73,4 @@ resetButton.addEventListener('click', (evt) => {
   getResetForm();
 });
 
-export {getResetForm};
+export {getResetForm, filterHouse, filterPrice, filterRooms, filterGuests, filterFeatures, Default};

@@ -1,10 +1,18 @@
 import './slider.js';
 import {createData} from './map.js';
-import {SIMILAR_AD_COUNT} from './data.js';
 import {getData} from './network.js';
 import {showSuccessPopup, showErrorPopup} from './popup.js';
 import {setUserFormSubmit} from './validation-form.js';
+import {onFilterChange, debounce} from './util.js';
 
-getData((dataUsers) => createData(dataUsers.slice(0, SIMILAR_AD_COUNT)));
+const RERENDER_DELAY = 500;
+
+getData((dataUsers) => {
+  createData(dataUsers);
+  onFilterChange(debounce(
+    () => createData(dataUsers),
+    RERENDER_DELAY,
+  ));
+});
 
 setUserFormSubmit(showSuccessPopup, showErrorPopup);

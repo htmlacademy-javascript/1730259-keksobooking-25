@@ -1,7 +1,8 @@
-import {adForm, deactivatePage, activatePage} from './change-page-form.js';
+import {adForm, activateForm, deactivateForm, diactivateFilters, activateFilters} from './change-page-form.js';
+import {onFilterCard} from './filters.js';
 import {renderCard} from './card.js';
 
-deactivatePage();
+const SIMILAR_AD_COUNT = 10;
 
 const COORDINATE_ROUNDING = 5;
 
@@ -12,7 +13,15 @@ const CENTER_CITY_TOKYO = {
   lng: 139.75175,
 };
 
+const LeafletParameters = {
+  TILE_LAYER: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+};
+
 const addressForm = adForm.querySelector('[name = "address"]');
+
+deactivateForm();
+diactivateFilters();
 
 const getAddress = (location) => {
   const lat = location.lat.toFixed(COORDINATE_ROUNDING);
@@ -23,14 +32,14 @@ const getAddress = (location) => {
 const map = L.map('map-canvas')
   .on('load', () => {
     getAddress(CENTER_CITY_TOKYO);
-    activatePage();
+    activateForm();
   })
   .setView(CENTER_CITY_TOKYO, ZOOM_MAP);
 
 L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  LeafletParameters.TILE_LAYER,
   {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    attribution: LeafletParameters.ATTRIBUTION,
   },
 ).addTo(map);
 
@@ -80,8 +89,10 @@ const createMarker = (item) => {
 };
 
 const createData = (element) => {
-  element.forEach((item) => {
+  markerGroup.clearLayers();
+  element.filter(onFilterCard).slice(0, SIMILAR_AD_COUNT).forEach((item) => {
     createMarker(item);
+    activateFilters();
   });
 };
 

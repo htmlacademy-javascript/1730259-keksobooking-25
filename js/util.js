@@ -1,8 +1,10 @@
-import {adForm} from './change-page-form.js';
+import {adForm, mapFilter} from './change-page-form.js';
 
 const ESC_ALL_BROWSERS = 'Escape';
 const ESC_IE = 'Esc';
 const DELAY_TIME = 5000;
+
+const submitButton = adForm.querySelector('.ad-form__submit');
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
@@ -26,28 +28,6 @@ const showAlert = (message) => {
   }, DELAY_TIME);
 };
 
-const submitButton = adForm.querySelector('.ad-form__submit');
-
-const getRandomNumberSimple = (numberFrom, numberNext) => {
-  if (numberFrom >= 0 && numberNext >= 0 && numberFrom < numberNext) {
-    const numberMin = Math.ceil(numberFrom);
-    const numberMax = Math.floor(numberNext);
-    const randomSimple = Math.floor(Math.random() * (numberMax - numberMin + 1)) + numberMin;
-    return Number(randomSimple);
-  }
-  throw new TypeError('Некоректно указанны данные');
-};
-
-const getRandomNumberFloat = (numberFrom, numberNext, numberFloat = 0) => {
-  if (numberFrom >= 0 && numberNext >= 0 && numberFrom < numberNext && numberFloat >= 0) {
-    const randomFloat = (Math.random() * (numberNext - numberFrom) + numberFrom).toFixed(numberFloat);
-    return Number(randomFloat);
-  }
-  throw new TypeError('Некоректно указанны данные');
-};
-
-const getRandomElement = (element) => element[getRandomNumberSimple(0, element.length - 1)];
-
 const blockSubmitButton = () => {
   submitButton.disabled = true;
   submitButton.textContent = 'Публикация...';
@@ -66,4 +46,23 @@ const showPopupMessage = (type) => {
 
 const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
 
-export {getRandomNumberSimple, getRandomNumberFloat, getRandomElement, blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert};
+const onFilterChange = (cb) => {
+
+  mapFilter.addEventListener('change', () => {
+    cb();
+  });
+
+  mapFilter.addEventListener('reset', () => {
+    cb();
+  });
+};
+
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange, debounce};
