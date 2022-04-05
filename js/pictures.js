@@ -37,9 +37,18 @@ fileChooserAvatar.addEventListener('change', () =>
 });
 
 const resetPicture = () => {
-  previewAvatar.src = DEFAULT_AVATAR;
-  const previewAllElements =  previewPhotoContainer.querySelectorAll('.ad-form__photo');
-  previewAllElements.forEach((element, index) => index === 0 ? element.firstChild.remove() : element.remove());
+  if (previewAvatar.src === DEFAULT_AVATAR) {
+    return true;
+  } else {
+    previewAvatar.src = DEFAULT_AVATAR;
+  }
+  const previewPhotoItem = previewPhoto.childNodes;
+  if (previewPhotoItem.length === 0) {
+    return true;
+  } else {
+    const previewAllElements =  previewPhotoContainer.querySelectorAll('.ad-form__photo');
+    previewAllElements.forEach((element, index) => index === 0 ? element.firstChild.remove() : element.remove());
+  }
 };
 
 export {resetPicture};
