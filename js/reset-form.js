@@ -1,4 +1,4 @@
-import {timeIn, timeOut, typesHousing, MIN_PRICE_HOUSING, numberRoom, pricesHousing, numberSeats} from './validation-form.js';
+import {timeIn, timeOut, typesHousing, MIN_PRICE, numberRoom, pricesHousing, numberSeats} from './validation-form.js';
 import {map, mainPinMarker, getAddress, CENTER_CITY_TOKYO, ZOOM_MAP} from './map.js';
 import {adForm} from './change-page-form.js';
 import {sliderElement, RANGE_MIN, RANGE_MAX} from './slider.js';
@@ -32,7 +32,7 @@ const resetPrice = () => {
     },
     start: pricesHousing.placeholder,
   });
-  pricesHousing.value = MIN_PRICE_HOUSING['flat'];
+  pricesHousing.value = MIN_PRICE['flat'];
 };
 
 const resetTime = () => {

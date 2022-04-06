@@ -3,14 +3,14 @@ import {blockSubmitButton, unblockSubmitButton} from './util.js';
 import {getResetForm} from './reset-form.js';
 import {sendData} from './network.js';
 
-const ROOMS_AND_GUESTS = {
+const TYPES_NUMBER = {
   '1': ['1'],
   '2': ['2', '1'],
   '3': ['3', '2', '1'],
   '100': ['0'],
 };
 
-const MIN_PRICE_HOUSING = {
+const MIN_PRICE = {
   'bungalow' : 0,
   'flat': 1000,
   'hotel' : 3000,
@@ -39,20 +39,20 @@ const pristine = new Pristine (adForm, {
 }, true);
 
 
-const validatePrise = () => pricesHousing.value >= MIN_PRICE_HOUSING[typesHousing.value];
+const validatePrise = () => pricesHousing.value >= MIN_PRICE[typesHousing.value];
 
 typesHousing.addEventListener('change', () => {
-  pricesHousing.placeholder = MIN_PRICE_HOUSING[typesHousing.value];
-  pricesHousing.min = MIN_PRICE_HOUSING[typesHousing.value];
+  pricesHousing.placeholder = MIN_PRICE[typesHousing.value];
+  pricesHousing.min = MIN_PRICE[typesHousing.value];
 });
 
 const onTypeFormChange = () => {
   pristine.validate(pricesHousing);
 };
 
-const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE_HOUSING[typesHousing.value]} руб.`;
+const getPriceErrorMessage = () => `Минимальная цена ${MIN_PRICE[typesHousing.value]} руб.`;
 
-const compareRooms = () => ROOMS_AND_GUESTS[numberRoom.value].includes(numberSeats.value);
+const compareRooms = () => TYPES_NUMBER[numberRoom.value].includes(numberSeats.value);
 
 const onChangeNumberSeats = () => {
   pristine.validate(numberSeats);
@@ -105,4 +105,4 @@ const setUserFormSubmit = (onSuccess, onFail) => {
   });
 };
 
-export {MIN_PRICE_HOUSING, numberRoom, pricesHousing, typesHousing, numberSeats, timeIn, timeOut, setUserFormSubmit};
+export {MIN_PRICE, numberRoom, pricesHousing, typesHousing, numberSeats, timeIn, timeOut, setUserFormSubmit};
