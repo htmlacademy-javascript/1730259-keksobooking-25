@@ -9,9 +9,9 @@ const submitButton = adForm.querySelector('.ad-form__submit');
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
+  alertContainer.style.zIndex = '1000';
   alertContainer.style.position = 'absolute';
-  alertContainer.style.width = '400px';
+  alertContainer.style.width = '500px';
   alertContainer.style.right = '50%';
   alertContainer.style.transform = 'translateX(50%)';
   alertContainer.style.top = '55px';
@@ -39,12 +39,6 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-const showPopupMessage = (type) => {
-  const messageTemplate = document.querySelector(`#${type}`).content.querySelector(`.${type}`);
-  const messageElement = messageTemplate.cloneNode(true);
-  document.body.insertAdjacentElement('beforeend', messageElement);
-};
-
 const isEscEvent = (evt) => evt.key === ESC_ALL_BROWSERS || evt.key === ESC_IE;
 
 const onFilterChange = (cb) => {
@@ -66,4 +60,4 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-export {blockSubmitButton, unblockSubmitButton, showPopupMessage, isEscEvent, showAlert, onFilterChange, debounce, RERENDER_DELAY};
+export {blockSubmitButton, unblockSubmitButton, isEscEvent, showAlert, onFilterChange, debounce, RERENDER_DELAY};

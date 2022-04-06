@@ -1,5 +1,5 @@
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'avif', 'webp'];
-const DEFAULT_AVATAR = 'img/muffin-grey.svg';
+const DEFAULT_IMAGE = 'img/muffin-grey.svg';
 
 const fileChooserAvatar = document.querySelector('.ad-form__field input[type=file]');
 const fileChooserPreview = document.querySelector('.ad-form__upload input[type=file]');
@@ -37,10 +37,10 @@ fileChooserAvatar.addEventListener('change', () =>
 });
 
 const resetPicture = () => {
-  if (previewAvatar.src === DEFAULT_AVATAR) {
+  if (previewAvatar.src === DEFAULT_IMAGE) {
     return true;
   } else {
-    previewAvatar.src = DEFAULT_AVATAR;
+    previewAvatar.src = DEFAULT_IMAGE;
   }
   const previewPhotoItem = previewPhoto.childNodes;
   if (previewPhotoItem.length === 0) {
