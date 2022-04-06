@@ -10,7 +10,7 @@ const previewPhotoContainer = document.querySelector('.ad-form__photo-container'
 fileChooserPreview.addEventListener('change', () => {
   const file = fileChooserPreview.files[0];
   const fileName = file.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const matches = FILE_TYPES.some((element) => fileName.endsWith(element));
   if (matches) {
     if (previewPhoto.childNodes.length === 0) {
       const pictureElement = `<img src='${URL.createObjectURL(file)}' width="100%" height="100%" style="objectFit: cover" alt="Фотография жилья">`;
@@ -29,7 +29,7 @@ fileChooserAvatar.addEventListener('change', () =>
   const file = fileChooserAvatar.files[0];
   const fileName = file.name.toLowerCase();
 
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const matches = FILE_TYPES.some((element) => fileName.endsWith(element));
 
   if (matches) {
     previewAvatar.src = URL.createObjectURL(file);
