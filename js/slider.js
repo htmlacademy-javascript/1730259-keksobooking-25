@@ -3,6 +3,7 @@ import {adForm} from './change-page-form.js';
 
 const RANGE_MIN = 0;
 const RANGE_MAX = 100000;
+const RANGE_STEP = 1;
 
 const sliderElement = adForm.querySelector('.ad-form__slider');
 
@@ -12,7 +13,7 @@ noUiSlider.create(sliderElement, {
     max: RANGE_MAX,
   },
   start: pricesHousing.placeholder,
-  step: 1,
+  step: RANGE_STEP,
   connect: 'lower',
   format: {
     to: function (value) {

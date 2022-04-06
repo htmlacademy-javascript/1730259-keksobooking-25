@@ -4,20 +4,20 @@ const successPopup = document.querySelector('#success').content.querySelector('.
 const errorPopup = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
 const closeErrorButton = errorPopup.querySelector('.error__button');
 
-const removePopapListener = (element, onKeydownHandler) => {
+const removePopapListener = (element, onDocumentKeydown) => {
   element.remove();
-  document.removeEventListener('keydown', onKeydownHandler);
+  document.removeEventListener('keydown', onDocumentKeydown);
 };
 
 const showSuccessPopup = () => {
   document.body.appendChild(successPopup);
-  const onKeydownHandler = (evt) => {
+  const onDocumentKeydown = (evt) => {
     if (isEscEvent(evt)) {
       evt.preventDefault();
       removePopapListener(successPopup);
     }
   };
-  document.addEventListener('keydown', onKeydownHandler);
+  document.addEventListener('keydown', onDocumentKeydown);
   successPopup.addEventListener('click', () => {
     removePopapListener(successPopup);
   });
@@ -25,13 +25,13 @@ const showSuccessPopup = () => {
 
 const showErrorPopup = () => {
   document.body.appendChild(errorPopup);
-  const onKeydownHandler = (evt) => {
+  const onDocumentKeydown = (evt) => {
     if (isEscEvent(evt)) {
       evt.preventDefault();
       removePopapListener(errorPopup);
     }
   };
-  document.addEventListener('keydown', onKeydownHandler);
+  document.addEventListener('keydown', onDocumentKeydown);
   closeErrorButton.addEventListener('click', () => {
     removePopapListener(errorPopup);
   });

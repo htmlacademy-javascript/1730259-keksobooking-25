@@ -3,9 +3,7 @@ import {createData} from './map.js';
 import {getData} from './network.js';
 import {showSuccessPopup, showErrorPopup} from './popup.js';
 import {setUserFormSubmit} from './validation-form.js';
-import {onFilterChange, debounce} from './util.js';
-
-const RERENDER_DELAY = 500;
+import {onFilterChange, debounce, RERENDER_DELAY} from './util.js';
 
 getData((dataUsers) => {
   createData(dataUsers);

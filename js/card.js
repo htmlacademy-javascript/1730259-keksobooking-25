@@ -12,29 +12,29 @@ const cardTemplate = document.querySelector('#card')
 
 const renderFeatures = (templateElement, elements) => {
   const featureList = templateElement.querySelectorAll('.popup__feature');
-  if (elements.offer.features !== undefined) {
+  if (elements.offer.features === undefined) {
+    templateElement.querySelector('.popup__features').classList.add('hidden');
+  } else {
     featureList.forEach((featureItem) => {
       const isNecessary = elements.offer.features.some((features) => featureItem.classList.contains(`popup__feature--${features}`),
       );
       if (!isNecessary) {
-        featureItem.remove();
+        featureItem.classList.add('hidden');
       }
     });
-  } else {
-    templateElement.querySelector('.popup__features').remove();
   }
 };
 
 const renderPhotos = (templateElement, elements) => {
   const photoContainer = templateElement.querySelector('.popup__photos');
   const photoItems = elements.offer.photos;
-  if (photoItems !== undefined) {
+  if (photoItems === undefined) {
+    photoContainer.classList.add('hidden');
+  } else {
     photoContainer.innerHTML = '';
     const newPhotosElements = photoItems.map((element) => `<img src='${element}' class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
     const combinePhotosElements = newPhotosElements.join('');
     photoContainer.insertAdjacentHTML('beforeend', combinePhotosElements);
-  } else {
-    photoContainer.classList.add('hidden');
   }
 };
 
